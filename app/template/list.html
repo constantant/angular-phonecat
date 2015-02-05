@@ -2,17 +2,16 @@
   <div class="row">
     <div class="col-md-2">
       <div>Поиск: <input ng-model="query"></div>
-      <div>Всего записей: {{itemsLen}}</div>
+      <div>Всего записей: {{$storage.items.length}}</div>
       <a ng-click="addItem()" href="">Добавить запись</a>
     </div>
     <div class="col-md-10">
 
       <ul class="phones">
-        <li ng-repeat="item in $storage.items | filter:query"
-            class="thumbnail phone-listing">
+        <li ng-repeat="item in $storage.items | filter:query" class="thumbnail phone-listing">
           <a href="#/{{$index}}">{{item.name}}</a>
           <a href="#/{{$index}}/edit">Редактировать</a>
-          <a ng-click="$rootScope.removeItem($index)" ng-href="">Удалить</a>
+          <a ng-click="removeItem($index)" href="">Удалить</a>
           <p>{{item.text}}</p>
         </li>
       </ul>

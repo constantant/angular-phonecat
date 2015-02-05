@@ -23,9 +23,8 @@ testControllers.controller('TestListController', ['$scope', '$localStorage', '$r
                 }
             ]
         });
-        $scope.itemsLen = $localStorage.items.length;
         $rootScope.title = 'Список записей';
-console.log($route);
+
         $scope.addItem = function(){
             var len =  $localStorage.items.length;
             $localStorage.items.push({
@@ -36,9 +35,9 @@ console.log($route);
             $route.updateParams(len);
 
         };
-        $rootScope.removeItem = function(index){
-            $localStorage.items.splice(index, 1);
 
+        $scope.removeItem = function(index){
+            $localStorage.items.splice(index, 1);
         };
     }
 ]);
