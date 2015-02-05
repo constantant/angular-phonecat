@@ -2,11 +2,13 @@
 
 /* Services */
 
-var phonecatServices = angular.module('phonecatServices', ['ngResource']);
+var testServices = angular.module('testServices', ['ngStorage']);
 
-phonecatServices.factory('Phone', ['$resource',
-  function($resource){
-    return $resource('phones/:phoneId.json', {}, {
+testServices.factory('Item', ['$localStorage',
+  function($localStorage){
+    console.log($localStorage);
+    /*return $resource('phones/:phoneId.json', {}, {
       query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
-    });
+    });*/
+    return 1;
   }]);
