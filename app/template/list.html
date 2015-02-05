@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" when-scrolled="loadMore()">
   <div class="row">
     <div class="col-md-2">
       <div>Поиск: <input ng-model="query"></div>
@@ -7,8 +7,8 @@
     </div>
     <div class="col-md-10">
 
-      <ul class="phones">
-        <li ng-repeat="item in $storage.items | filter:query" class="thumbnail phone-listing">
+      <ul class="phones" infinite-scroll="addMoreItems()">
+        <li ng-repeat="item in items | filter:query" class="thumbnail phone-listing">
           <a href="#/{{$index}}">{{item.name}}</a>
           <a href="#/{{$index}}/edit">Редактировать</a>
           <a ng-click="removeItem($index)" href="">Удалить</a>

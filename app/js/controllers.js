@@ -4,9 +4,12 @@
 
 var testControllers = angular.module('testControllers', []);
 
-testControllers.controller('TestListController', ['$scope', '$localStorage', '$rootScope', '$route',
-    function($scope, $localStorage, $rootScope, $route) {
+testControllers.controller('TestListController', ['$scope', '$localStorage', '$rootScope', '$route', '$location',
+    function($scope, $localStorage, $rootScope, $route, $location) {
 
+        $rootScope.title = 'Список записей';
+        $scope.items = [];
+        $scope.limit = 10;
         $scope.$storage = $localStorage.$default({
             items: [
                 {
@@ -23,7 +26,11 @@ testControllers.controller('TestListController', ['$scope', '$localStorage', '$r
                 }
             ]
         });
-        $rootScope.title = 'Список записей';
+
+        $scope.loadMore = function() {
+            $scope.items = $localStorage.items.slice(0, $scope.limit);
+            $scope.limit += $scope.limit;
+        };
 
         $scope.addItem = function(){
             var len =  $localStorage.items.length;
@@ -32,13 +39,16 @@ testControllers.controller('TestListController', ['$scope', '$localStorage', '$r
                 text:'Здесь ваш текст...'
             });
 
-            $route.updateParams(len);
+            $location.url('/' + len +'/edit');
 
         };
 
         $scope.removeItem = function(index){
             $localStorage.items.splice(index, 1);
+            $scope.items = $localStorage.items.slice(0, $scope.limit);
         };
+
+        $scope.loadMore();
     }
 ]);
 
