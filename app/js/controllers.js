@@ -10,22 +10,7 @@ testControllers.controller('TestListController', ['$scope', '$localStorage', '$r
         $rootScope.title = 'Список записей';
         $scope.items = [];
         $scope.limit = 10;
-        $scope.$storage = $localStorage.$default({
-            items: [
-                {
-                    name:'test 1',
-                    text:'test test test 1 test test test test'
-                },
-                {
-                    name:'test 2',
-                    text:'test test 2 test test test test test'
-                },
-                {
-                    name:'test 3',
-                    text:'test test test test test 3 test test'
-                }
-            ]
-        });
+        $scope.$storage = $localStorage.$default({items:[]});
 
         $scope.loadMore = function() {
             $scope.items = $localStorage.items.slice(0, $scope.limit);
@@ -45,7 +30,7 @@ testControllers.controller('TestListController', ['$scope', '$localStorage', '$r
 
         $scope.removeItem = function(index){
             $localStorage.items.splice(index, 1);
-            $scope.items = $localStorage.items.slice(0, $scope.limit);
+            $scope.items = $localStorage.items.slice(0, $scope.items.length);
         };
 
         $scope.loadMore();
