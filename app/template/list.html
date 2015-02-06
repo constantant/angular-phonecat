@@ -1,21 +1,21 @@
-<div class="container-fluid" when-scrolled="loadMore()">
-  <div class="row">
-    <div class="col-md-2">
-      <div>Поиск: <input ng-model="query"></div>
-      <div>Всего записей: {{$storage.items.length}}</div>
-      <a ng-click="addItem()" href="">Добавить запись</a>
+<header class="header">
+  <div class="header-content middle">
+    <div class="header-item">
+      <a ng-click="addItem()" href="" class="header-button">Добавить запись</a>
     </div>
-    <div class="col-md-10">
-
-      <ul class="phones" infinite-scroll="addMoreItems()">
-        <li ng-repeat="item in items | filter:query" class="thumbnail phone-listing">
-          <a href="#/{{$index}}">{{item.name}}</a>
-          <a href="#/{{$index}}/edit">Редактировать</a>
-          <a ng-click="removeItem($index)" href="">Удалить</a>
-          <p>{{item.text}}</p>
-        </li>
-      </ul>
-
+    <div class="header-search">
+      <input ng-model="query" ng-change="filter(query)" autofocus placeholder="Найти запись">
+      <span class="header-count" ng-hide="query!=''">Всего записей: {{$storage.items.length}}</span>
+      <span class="header-search-count" ng-show="query!=''">Найдено: {{itemsInSearch}}</span>
     </div>
   </div>
-</div>
+</header>
+
+<section class="items-list middle" when-scrolled="loadMore()">
+  <div ng-repeat="item in items" class="items-item">
+    <a href="#/{{$index}}" class="items-item-title">{{item.name}}</a>
+    <div class="items-item-announce">{{item.text | limitTo:80}}</div>
+    <a href="#/{{$index}}/edit" class="items-item-button-edit">Редактировать</a>
+    <a ng-click="removeItem($index)" href="" class="items-item-button-delete">Удалить</a>
+  </div>
+</section>

@@ -6,6 +6,7 @@ var testApp = angular.module('testApp', [
   'ngRoute',
   'ngStorage',
   'scroll',
+  'autofocus',
 
   'testControllers'
 ]);

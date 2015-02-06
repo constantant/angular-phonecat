@@ -1,5 +1,22 @@
-<div>
-  <h1>{{data.name}}</h1>
-  <input ng-model="data.name" />
-  <textarea ng-model="data.text"></textarea>
-</div>
+<header class="header">
+  <div class="header-content middle">
+    <div class="header-item">
+      <a ng-click="removeItem()" href="" class="header-button">Удалить</a>
+    </div>
+    <div class="header-item">
+      <a href="#/{{index}}" class="header-button">Просмотр</a>
+    </div>
+    <div class="header-search">
+      <a href="#/" class="header-button">Вернуться к списку</a>
+    </div>
+  </div>
+</header>
+
+<section class="item-content middle">
+  <div class="item-title">
+    <textarea ng-model="data.name" placeholder="Заголовок записи"></textarea>
+  </div>
+  <div class="item-text">
+    <textarea ng-model="data.text" placeholder="Содержание записи"></textarea>
+  </div>
+</section>

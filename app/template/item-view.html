@@ -1,6 +1,18 @@
-<div>
-  <h1>{{data.name}}</h1>
-  <div>
-    {{data.text}}
+<header class="header">
+  <div class="header-content middle">
+    <div class="header-item">
+      <a ng-click="removeItem()" href="" class="header-button">Удалить</a>
+    </div>
+    <div class="header-item">
+      <a href="#/{{index}}/edit" class="header-button">Редактировать</a>
+    </div>
+    <div class="header-search">
+      <a href="#/" class="header-button">Вернуться к списку</a>
+    </div>
   </div>
-</div>
+</header>
+
+<section class="item-content middle">
+  <h1 class="item-title">{{data.name}}</h1>
+  <div class="item-text">{{data.text}}</div>
+</section>
